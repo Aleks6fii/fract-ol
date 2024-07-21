@@ -1,0 +1,4 @@
+/minilibx-linux
+.vscode
+Makefile
+*.out
