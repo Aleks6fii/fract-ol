@@ -1,4 +1,14 @@
-//*** All functions for string processing ***//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   string_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afilippo <afilippo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/22 21:10:23 by afilippo          #+#    #+#             */
+/*   Updated: 2024/07/22 21:11:25 by afilippo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fractol.h"
 
@@ -27,8 +37,7 @@ void	ft_putstr_fd(char *s, int fd)
 	}
 }
 
-// like atoi but for double
-double atodbl(char *s)
+double	atodbl(char *s)
 {
 	long	integer_part;
 	double	fractional_part;
@@ -39,22 +48,19 @@ double atodbl(char *s)
 	fractional_part = 0;
 	sign = +1;
 	pow = 1;
-
 	while ((*s >= 9 && *s <= 13) || *s == 32)
 		s++;
 	while (*s == '+' || *s == '-')
 		if (*s++ == '-')
 			sign = -sign;
-	while (*s != '.' && *s)			// handle integer part
+	while (*s != '.' && *s)
 		integer_part = (integer_part * 10) + (*s++ - 48);
-	if (*s == '.')					// if reached fractional part
-		s++;						// skip dot '.'
-	while (*s)						// and handle fractional part
+	if (*s == '.')
+		s++;
+	while (*s)
 	{
 		pow /= 10;
 		fractional_part = fractional_part + (*s++ - 48) * pow;
 	}
-	
 	return ((integer_part + fractional_part) * sign);
 }
-
